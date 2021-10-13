@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Lab3_main {
@@ -18,18 +15,34 @@ public class Lab3_main {
     }
 
     public static void main(String[] args) {
+        final String[] discipline = {"Английский", "Математика", "Программирование", "Физика", "Химия"};
         int function;
         Scanner in = new Scanner(System.in);
 
-        exRes.add(new ExamResult("Beliy", "Max", "Aleksandrovich", 1, "IKS", 2,
-                new Mark("Chemistry", "Mendeleev", 5), new Mark("Chemistry", "Mendeleev", 4),
-                new Mark("Chemistry", "Mendeleev", 4), new Mark("Chemistry", "Mendeleev", 4),
-                new Mark("Chemistry", "Mendeleev", 4)));
+        exRes.add(new ExamResult("Журавлёв", "Давид", "Тимофеевич", 1, "ИКС", 2,
+                new Mark(discipline[0], "Кудряшова", 5), new Mark(discipline[1], "Фёдоров", 4),
+                new Mark(discipline[2], "Гаврилов", 4), new Mark(discipline[3], "Александров", 5),
+                new Mark(discipline[4], "Зайцева", 5)));
 
-        exRes.add(new ExamResult("Ivanov", "Ivan", "Ivanovich", 2, "IRBT", 3,
-                new Mark("Chemistry", "Mendeleev", 3), new Mark("Chemistry", "Mendeleev", 5),
-                new Mark("Chemistry", "Mendeleev", 4), new Mark("Chemistry", "Mendeleev", 2),
-                new Mark("Chemistry", "Mendeleev", 2)));
+        exRes.add(new ExamResult("Иванов", "Иван", "Иванович", 2, "ИИРБТ", 3,
+                new Mark(discipline[0], "Маркова", 3), new Mark(discipline[1], "Фёдоров", 5),
+                new Mark(discipline[2], "Дементьев", 4), new Mark(discipline[3], "Шарапов", 2),
+                new Mark(discipline[4], "Рогова", 2)));
+
+        exRes.add(new ExamResult("Соколова", "Ольга", "Николаевна", 2, "УНИ", 3,
+                new Mark(discipline[0], "Кудряшова", 2), new Mark(discipline[1], "Новиков", 2),
+                new Mark(discipline[2], "Дорофеев", 1), new Mark(discipline[3], "Киселёв", 2),
+                new Mark(discipline[4], "Зайцева", 2)));
+
+        exRes.add(new ExamResult("Васильев", "Ростислав", "Аркадьевич", 2, "ИЕКСУ", 3,
+                new Mark(discipline[0], "Кудряшова", 3), new Mark(discipline[1], "Фёдоров", 3),
+                new Mark(discipline[2], "Дорофеев", 5), new Mark(discipline[3], "Прохоров", 5),
+                new Mark(discipline[4], "Кузьмин", 4)));
+
+        exRes.add(new ExamResult("Горбунова", "Анастасия", "Степановна", 2, "ХТФ", 3,
+                new Mark(discipline[0], "Маркова", 5), new Mark(discipline[1], "Новиков", 2),
+                new Mark(discipline[2], "Гаврилов", 3), new Mark(discipline[3], "Шарапов", 2),
+                new Mark(discipline[4], "Гуляев", 4)));
 
 
         do {
@@ -58,6 +71,7 @@ public class Lab3_main {
                     exRes.IsBadStudent();
                     break;
                 case 4:
+                    exRes.SubjectWithBadMark();
                     break;
                 case 5:
                     exRes.RemoveBadStudents();

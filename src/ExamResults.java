@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import  java.util.Collections;
 
 public class ExamResults {
 
     ArrayList<ExamResult> examResults;
+    final String[] discipline = {"Английский", "Математика", "Программирование", "Физика", "Химия"};
 
     public ExamResults() {
         this.examResults = new ArrayList<>();
@@ -62,6 +64,57 @@ public class ExamResults {
         }
     }
 
+    int countFirstSubject = 0;
+    int countSecondSubject = 0;
+    int countThirdSubject = 0;
+    int countFourthSubject = 0;
+    int countFifthSubject = 0;
+
+    public void SubjectWithBadMark() {
+        for (ExamResult object : examResults) {
+            for (int i = 0; i < 5; i++) {
+                if (object.result[i].getSubjectName().equals(discipline[0]) && object.result[i].getMark() == 2) {
+                    countFirstSubject++;
+                }
+                if (object.result[i].getSubjectName().equals(discipline[1]) && object.result[i].getMark() == 2) {
+                    countSecondSubject++;
+                }
+                if (object.result[i].getSubjectName().equals(discipline[2]) && object.result[i].getMark() == 2) {
+                    countThirdSubject++;
+                }
+                if (object.result[i].getSubjectName().equals(discipline[3]) && object.result[i].getMark() == 2) {
+                    countFourthSubject++;
+                }
+                if (object.result[i].getSubjectName().equals(discipline[4]) && object.result[i].getMark() == 2) {
+                    countFifthSubject++;
+                }
+            }
+        }
+
+        ArrayList<Integer> counters = new ArrayList<>();
+        counters.add(countFirstSubject);
+        counters.add(countSecondSubject);
+        counters.add(countThirdSubject);
+        counters.add(countFourthSubject);
+        counters.add(countFifthSubject);
+
+        if (countFirstSubject == Collections.max(counters)){
+            System.out.println(discipline[0] + " - " + countFirstSubject);
+        }
+        if (countSecondSubject == Collections.max(counters)){
+            System.out.println(discipline[1] + " - " + countSecondSubject);
+        }
+        if (countThirdSubject == Collections.max(counters)){
+            System.out.println(discipline[2] + " - " + countThirdSubject);
+        }
+        if (countFourthSubject == Collections.max(counters)){
+            System.out.println(discipline[3] + " - " + countFourthSubject);
+        }
+        if (countFifthSubject == Collections.max(counters)){
+            System.out.println(discipline[4] + " - " + countFifthSubject);
+        }
+    }
+
     @Override
     public String toString() {
         return "ExamResults{" +
@@ -69,4 +122,3 @@ public class ExamResults {
                 '}';
     }
 }
-
