@@ -1,110 +1,66 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Lab3_main {
+    public static ExamResults exRes = new ExamResults();
+
+    public static int CheckCorrectFunction(String value) {
+        int func = -1;
+        try {
+            func = Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            func = -1;
+        }
+
+        return func;
+    }
 
     public static void main(String[] args) {
-        //ArrayList marks = new ArrayList();
-        //ArrayList<Integer> marks = new ArrayList<>(0);
-        //ArrayList<ExamResult> exRes = new ArrayList<>();
-        Scanner in = new Scanner(System.in);
         int function;
-        System.out.print("Введите количество студентов: ");
-        int countStudRes = in.nextInt();
+        Scanner in = new Scanner(System.in);
 
-        in.nextLine();
-        ExamResults res = new ExamResults(countStudRes);
-        //ExamResult[] res = new ExamResult[1];
-        int trueMark = -1;
+        exRes.add(new ExamResult("Beliy", "Max", "Aleksandrovich", 1, "IKS", 2,
+                new Mark("Chemistry", "Mendeleev", 5), new Mark("Chemistry", "Mendeleev", 4),
+                new Mark("Chemistry", "Mendeleev", 4), new Mark("Chemistry", "Mendeleev", 4),
+                new Mark("Chemistry", "Mendeleev", 4)));
 
-        for (int i = 0; i < res.examResults.length; i++) {
-            res.examResults[i] = new ExamResult();
-            System.out.print("Введите Фамилию: ");
-            res.examResults[i].setF(in.nextLine());
-            System.out.print("Введите Имя: ");
-            res.examResults[i].setI(in.nextLine());
-            System.out.print("Введите Отчество: ");
-            res.examResults[i].setO(in.nextLine());
-            System.out.print("Введите Номер зачетки: ");
-            res.examResults[i].setNumberGradeBook(in.nextInt());
-            in.nextLine();
-            System.out.print("Введите Наименование факультета: ");
-            res.examResults[i].setFacultyName(in.nextLine());
-            System.out.print("Введите Курс: ");
-            res.examResults[i].setCourse(in.nextInt());
-            in.nextLine();
-            for (int j = 0; j < 5; j++){
-                res.examResults[i].result[j] = new Mark();
-                System.out.print("Введите Название предмета: ");
-                res.examResults[i].result[j].setSubjectName(in.nextLine());
-                System.out.print("Введите Фамилию преподавателя: ");
-                res.examResults[i].result[j].setTeacherName(in.nextLine());
-                do {
-                    System.out.print("Введите Оценку: ");
-                    trueMark = Mark.CheckCorrectMark("" + in.nextLine());
-                    if (trueMark == -1) {
-                        System.out.println("Ошибка! Вы ввели неверное значение.");
-                    } else {
-                        res.examResults[i].result[j].setMark(trueMark);
-                    }
-                } while (trueMark == -1);
-                //in.nextLine();
-            }
-            System.out.println();
-        }
+        exRes.add(new ExamResult("Ivanov", "Ivan", "Ivanovich", 2, "IRBT", 3,
+                new Mark("Chemistry", "Mendeleev", 3), new Mark("Chemistry", "Mendeleev", 5),
+                new Mark("Chemistry", "Mendeleev", 4), new Mark("Chemistry", "Mendeleev", 2),
+                new Mark("Chemistry", "Mendeleev", 2)));
 
-        for (int i = 0; i < res.examResults.length; i++) {
-            System.out.println(res.examResults[i].toString());
-            for (int j = 0; j < 5; j++)
-            {
-                System.out.println(res.examResults[i].result[j].toString());
-            }
-            System.out.println();
-        }
 
         do {
             System.out.println("\nСписок функций: ");
-            System.out.println("[1] - Показать отличников");
-            System.out.println("[2] - Показать двоечников");
-            System.out.println("[3] - Показать дисциплину с наибольшим количеством двоечников");
-            System.out.println("[4] - Удаление студентов-двоечников");
+            System.out.println("[1] - Вывод массива на экран");
+            System.out.println("[2] - Показать отличников");
+            System.out.println("[3] - Показать двоечников");
+            System.out.println("[4] - Показать дисциплину с наибольшим количеством двоечников");
+            System.out.println("[5] - Удаление студентов-двоечников");
             System.out.println("[0] - Выход из программы");
-            System.out.print("Введите номер функции: ");
-            function = in.nextInt();
+            do {
+                System.out.print("Введите номер функции: ");
+                function = CheckCorrectFunction(in.nextLine());
+            } while (function == -1);
 
             switch (function) {
                 case 1:
-                    System.out.println("\nОтличники: ");
-                    for (int i = 0; i < res.examResults.length; i++) {
-                        if (res.IsExcellent(i) == true) {
-                                System.out.println(res.examResults[i].toString());
-                                for (int j = 0; j < 5; j++) {
-                                    System.out.println(res.examResults[i].result[j].toString());
-                                }
-
-                        } /*else {
-                            System.out.println("Нету отличников");
-                        }*/
-                    }
+                    System.out.println(exRes);
                     break;
                 case 2:
-                    System.out.println("\nСтуденты имеющие двойки: ");
-                    for (int i = 0; i < res.examResults.length; i++) {
-                        if (res.IsBadStudent(i) == true) {
-                            System.out.println(res.examResults[i].toString());
-                            for (int j = 0; j < 5; j++) {
-                                System.out.println(res.examResults[i].result[j].toString());
-                            }
-
-                        } /*else {
-                            System.out.println("Нету двоечников");
-                        }*/
-                    }
+                    System.out.println("\nСтуденты отличники: ");
+                    exRes.IsExcellent();
                     break;
                 case 3:
-                    System.out.println("Третья функция");
+                    System.out.println("\nСтуденты двоечники: ");
+                    exRes.IsBadStudent();
                     break;
                 case 4:
-                    System.out.println("Четвертая функция");
+                    break;
+                case 5:
+                    exRes.RemoveBadStudents();
                     break;
                 case 0:
                     break;

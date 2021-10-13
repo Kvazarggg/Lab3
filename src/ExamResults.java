@@ -1,33 +1,72 @@
+import java.util.ArrayList;
+
 public class ExamResults {
-    ExamResult[] examResults;
 
-    public ExamResults(int quantity) {
-        this.examResults = new ExamResult[quantity];
+    ArrayList<ExamResult> examResults;
+
+    public ExamResults() {
+        this.examResults = new ArrayList<>();
     }
 
-    public boolean IsExcellent(int position) {
+    void add(ExamResult examRes) {
+        examResults.add(examRes);
+    }
+
+    public void IsExcellent() {
         boolean Check = false;
-        for (int j = 0; j < 5; j++) {
-            if (examResults[position].result[j].getMark() > 3) {
-                Check = true;
-            } else {
-                return false;
+        for (ExamResult object : examResults) {
+            for (int i = 0; i < 5; i++) {
+                if (object.result[i].getMark() > 3) {
+                    Check = true;
+                } else {
+                    Check = false;
+                    break;
+                }
             }
-
-        }
-        return Check;
-    }
-    public boolean IsBadStudent(int position) {
-        boolean isTwo = false;
-        for (int j = 0; j < 5; j++) {
-            if (examResults[position].result[j].getMark() == 2) {
-                return true;
-            } else {
-                isTwo = false;
+            if (Check == true) {
+                System.out.println(object);
             }
-
         }
-        return isTwo;
     }
 
+    public void IsBadStudent() {
+        boolean Check = false;
+        for (ExamResult object : examResults) {
+            for (int i = 0; i < 5; i++) {
+                if (object.result[i].getMark() == 2) {
+                    Check = true;
+                    break;
+                } else {
+                    Check = false;
+                }
+            }
+            if (Check == true) {
+                System.out.println(object);
+            }
+        }
+    }
+
+    public void RemoveBadStudents() {
+        boolean flag = false;
+        for (ExamResult object : examResults) {
+            for (int i = 0; i < 5; i++) {
+                if (object.result[i].getMark() == 2) {
+                    examResults.remove(object);
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag == true) {
+                break;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ExamResults{" +
+                examResults +
+                '}';
+    }
 }
+

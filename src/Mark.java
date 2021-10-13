@@ -3,6 +3,11 @@ public class Mark {
     String teacherName;
     int mark;
 
+    public Mark(String subjectName, String teacherName, int mark){
+        this.setSubjectName(subjectName);
+        this.setTeacherName(teacherName);
+        this.setMark(mark);
+    }
     public String getSubjectName() {
         return subjectName;
     }
@@ -40,7 +45,7 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "Mark{" +
+        return "\nMark{" +
                 "subjectName='" + subjectName + '\'' +
                 ", teacherName='" + teacherName + '\'' +
                 ", mark=" + mark +

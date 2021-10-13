@@ -9,6 +9,22 @@ public class ExamResult {
     int course;
     Mark[] result = new Mark[5];
 
+    public ExamResult(String f, String i, String o, int numberGradeBook, String facultyName, int course,
+                      Mark m1, Mark m2, Mark m3, Mark m4, Mark m5){
+        this.setF(f);
+        this.setI(i);
+        this.setO(o);
+        this.setNumberGradeBook(numberGradeBook);
+        this.setFacultyName(facultyName);
+        this.setCourse(course);
+
+        result[0] = m1;
+        result[1] = m2;
+        result[2] = m3;
+        result[3] = m4;
+        result[4] = m5;
+    }
+
     public String getF() {
         return f;
     }
@@ -67,13 +83,13 @@ public class ExamResult {
 
     @Override
     public String toString() {
-        return "ExamResult{" +
-                "f='" + f + '\'' +
+        return "\nf='" + f + '\'' +
                 ", i='" + i + '\'' +
                 ", o='" + o + '\'' +
                 ", numberGradeBook=" + numberGradeBook +
                 ", facultyName='" + facultyName + '\'' +
                 ", course=" + course +
+                ", \nresult=" + Arrays.toString(result) +
                 '}';
     }
 }
