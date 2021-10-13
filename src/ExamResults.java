@@ -3,6 +3,7 @@ import  java.util.Collections;
 
 public class ExamResults {
 
+    public static final int MARK_COUNT = 5;
     ArrayList<ExamResult> examResults;
     final String[] discipline = {"Английский", "Математика", "Программирование", "Физика", "Химия"};
 
@@ -17,7 +18,7 @@ public class ExamResults {
     public void IsExcellent() {
         boolean Check = false;
         for (ExamResult object : examResults) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < MARK_COUNT; i++) {
                 if (object.result[i].getMark() > 3) {
                     Check = true;
                 } else {
@@ -34,7 +35,7 @@ public class ExamResults {
     public void IsBadStudent() {
         boolean Check = false;
         for (ExamResult object : examResults) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < MARK_COUNT; i++) {
                 if (object.result[i].getMark() == 2) {
                     Check = true;
                     break;
@@ -51,7 +52,7 @@ public class ExamResults {
     public void RemoveBadStudents() {
         boolean flag = false;
         for (ExamResult object : examResults) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < MARK_COUNT; i++) {
                 if (object.result[i].getMark() == 2) {
                     examResults.remove(object);
                     flag = true;
@@ -72,7 +73,7 @@ public class ExamResults {
 
     public void SubjectWithBadMark() {
         for (ExamResult object : examResults) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < MARK_COUNT; i++) {
                 if (object.result[i].getSubjectName().equals(discipline[0]) && object.result[i].getMark() == 2) {
                     countFirstSubject++;
                 }
